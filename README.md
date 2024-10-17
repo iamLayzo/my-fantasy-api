@@ -1,4 +1,4 @@
-<p align="center">
+me referia a esto <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
@@ -33,5 +33,125 @@ This project is a GraphQL API designed for managing enemies in a fantasy role-pl
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/my-fantasy-api.git
-cd my-fantasy-api
+igit clone https://github.com/your-username/my-fantasy-api.git
+cd my-fantasy-ap
+npm install
+```
+2. Create a .env file at the root of your project with the following content:
+```bash
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=example
+DB_PASS=example
+DB_NAME=example
+DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${POSTGRES_PORT}/${POSTGRES_DB}
+```
+3. Start the application using Docker Compose:
+```bash
+docker-compose up --build
+```
+
+## GraphQL Queries and Mutations
+### Query: Fetch All Enemies
+```graphql
+
+query {
+  enemies {
+    id
+    name
+    category
+    level
+    description
+    abilities
+    interactionPhrases
+  }
+}
+```
+### Mutation: Create a Single Enemy
+```graphql
+mutation {
+  createEnemies(createEnemiesInput: {
+    enemy: {
+      name: "Goblin",
+      category: "Monster",
+      level: 5,
+      description: "A sneaky goblin.",
+      abilities: "Stealth",
+      interactionPhrases: "You'll never catch me!"
+    }
+  }) {
+    id
+    name
+    category
+    level
+    description
+    abilities
+    interactionPhrases
+  }
+}
+```
+### Mutation: Create Multiple Enemies
+
+```graphql
+mutation {
+  createEnemies(createEnemiesInput: {
+    enemies: [
+      {
+        name: "Orc",
+        category: "Beast",
+        level: 10,
+        description: "A strong and brutal orc.",
+        abilities: "Axe swing",
+        interactionPhrases: "You will feel my wrath!"
+      },
+      {
+        name: "Troll",
+        category: "Beast",
+        level: 15,
+        description: "A giant, dumb troll.",
+        abilities: "Club smash",
+        interactionPhrases: "I will crush you!"
+      }
+    ]
+  }) {
+    id
+    name
+    category
+    level
+    description
+    abilities
+    interactionPhrases
+  }
+}
+```
+### Mutation: Update an Enemy
+```graphql
+mutation {
+  updateEnemy(id: 1, updateEnemyDto: {
+    name: "Goblin King",
+    level: 10
+  }) {
+    id
+    name
+    category
+    level
+    description
+    abilities
+    interactionPhrases
+  }
+}
+```
+### Mutation: Delete an Enemy
+```graphql
+Copiar código
+mutation {
+  removeEnemy(id: 1)
+}
+```
+## Technologies Used
+
+- **NestJS**: A progressive Node.js framework.
+- **GraphQL**: API query language for flexible requests.
+- **TypeORM**: Object-relational mapper (ORM) to interact with PostgreSQL.
+- **PostgreSQL**: Relational database system.
+- **Docker**: For containerizing the API and PostgreSQL services.
