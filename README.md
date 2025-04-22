@@ -33,7 +33,7 @@ This project is a GraphQL API designed for managing enemies in a fantasy role-pl
 1. Clone the repository:
 
 ```bash
-igit clone https://github.com/your-username/my-fantasy-api.git
+git clone https://github.com/your-username/my-fantasy-api.git
 cd my-fantasy-ap
 npm install
 ```
